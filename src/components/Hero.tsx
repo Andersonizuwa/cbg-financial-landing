@@ -1,0 +1,68 @@
+import { ArrowRight } from 'lucide-react';
+import heroBg from '@/assets/hero-bg.jpg';
+
+const Hero = () => {
+  const stats = [
+    { value: '$8.2B', label: 'Assets Under Management' },
+    { value: '25K+', label: 'Active Traders' },
+    { value: '15+', label: 'Years of Experience' },
+    { value: '24/7', label: 'Customer Support' },
+  ];
+
+  return (
+    <section className="relative min-h-screen flex items-center pt-20">
+      {/* Background Image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${heroBg})` }}
+      >
+        <div className="absolute inset-0 bg-background/80" />
+      </div>
+
+      {/* Content */}
+      <div className="container mx-auto px-4 lg:px-8 relative z-10 py-20">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Left Column - Text */}
+          <div className="space-y-8">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+              Invest in Your{' '}
+              <span className="gradient-text">Future</span>
+              {' '}Today
+            </h1>
+            <p className="text-lg md:text-xl text-muted-foreground max-w-xl">
+              Join thousands of investors who trust CBG Financial to help them reach their financial goals with our comprehensive trading and investment solutions.
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <a href="#contact" className="btn-primary">
+                Open an Account
+                <ArrowRight size={20} />
+              </a>
+              <a href="#services" className="btn-secondary">
+                Learn More
+              </a>
+            </div>
+          </div>
+
+          {/* Right Column - Stats */}
+          <div className="grid grid-cols-2 gap-4">
+            {stats.map((stat, index) => (
+              <div 
+                key={index}
+                className="glass-card p-6 md:p-8"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <div className="stat-value">{stat.value}</div>
+                <div className="stat-label">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom Gradient */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
+    </section>
+  );
+};
+
+export default Hero;
