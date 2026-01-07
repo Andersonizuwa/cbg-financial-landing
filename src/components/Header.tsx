@@ -24,13 +24,6 @@ const Header = () => {
             <a href="#contact" className="nav-link">Contact</a>
           </nav>
 
-          {/* CTA Buttons */}
-          <div className="hidden lg:flex items-center gap-4">
-            <a href="#contact" className="nav-link">Login</a>
-            <a href="#contact" className="btn-primary !py-3 !px-6">
-              Get Started
-            </a>
-          </div>
 
           {/* Mobile Menu Button */}
           <button 
@@ -49,10 +42,6 @@ const Header = () => {
               <a href="#services" className="nav-link py-2" onClick={() => setIsMenuOpen(false)}>Services</a>
               <a href="#why-us" className="nav-link py-2" onClick={() => setIsMenuOpen(false)}>Why Choose Us</a>
               <a href="#contact" className="nav-link py-2" onClick={() => setIsMenuOpen(false)}>Contact</a>
-              <div className="flex flex-col gap-3 pt-4">
-                <a href="#contact" className="nav-link py-2">Login</a>
-                <a href="#contact" className="btn-primary text-center">Get Started</a>
-              </div>
             </nav>
           </div>
         )}
