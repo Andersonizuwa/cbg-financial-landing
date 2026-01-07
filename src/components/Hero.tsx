@@ -1,4 +1,6 @@
 import { ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import heroBg from '@/assets/hero-bg.jpg';
 
 const Hero = () => {
@@ -23,7 +25,12 @@ const Hero = () => {
       <div className="container mx-auto px-4 lg:px-8 relative z-10 py-20">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Column - Text */}
-          <div className="space-y-8">
+          <motion.div 
+            className="space-y-8"
+            initial={{ opacity: 0, x: -40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+          >
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
               Invest in Your{' '}
               <span className="gradient-text">Future</span>
@@ -33,27 +40,29 @@ const Hero = () => {
               Join thousands of investors who trust CBG Financial to help them reach their financial goals with our comprehensive trading and investment solutions.
             </p>
             <div className="flex flex-wrap gap-4">
-              <a href="#contact" className="btn-primary">
+              <Link to="/contact" className="btn-primary">
                 Open an Account
                 <ArrowRight size={20} />
-              </a>
+              </Link>
               <a href="#services" className="btn-secondary">
                 Learn More
               </a>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Column - Stats */}
           <div className="grid grid-cols-2 gap-4">
             {stats.map((stat, index) => (
-              <div 
+              <motion.div 
                 key={index}
                 className="glass-card p-6 md:p-8"
-                style={{ animationDelay: `${index * 0.1}s` }}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
               >
                 <div className="stat-value">{stat.value}</div>
                 <div className="stat-label">{stat.label}</div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>

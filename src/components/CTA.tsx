@@ -1,10 +1,18 @@
 import { ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 const CTA = () => {
   return (
     <section id="contact" className="py-24 section-light">
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-background via-background to-muted p-12 md:p-16 lg:p-20">
+        <motion.div 
+          className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-background via-background to-muted p-12 md:p-16 lg:p-20"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
+          transition={{ duration: 0.6 }}
+        >
           {/* Background Pattern */}
           <div className="absolute inset-0 opacity-5">
             <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-primary blur-3xl" />
@@ -20,16 +28,16 @@ const CTA = () => {
               Open your account today and join thousands of successful traders who trust CBG Financial for their investment needs.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <a href="#" className="btn-primary">
+              <Link to="/contact" className="btn-primary">
                 Open an Account
                 <ArrowRight size={20} />
-              </a>
-              <a href="#" className="btn-secondary">
+              </Link>
+              <Link to="/contact" className="btn-secondary">
                 Contact Us
-              </a>
+              </Link>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

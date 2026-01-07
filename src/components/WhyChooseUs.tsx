@@ -1,4 +1,5 @@
 import { Shield, Eye, Zap, HeadphonesIcon } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const WhyChooseUs = () => {
   const features = [
@@ -28,7 +29,13 @@ const WhyChooseUs = () => {
     <section id="why-us" className="py-24 bg-background">
       <div className="container mx-auto px-4 lg:px-8">
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <motion.div 
+          className="text-center max-w-3xl mx-auto mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
+          transition={{ duration: 0.6 }}
+        >
           <span className="text-primary font-semibold text-sm uppercase tracking-wider">
             Why CBG Financial
           </span>
@@ -38,14 +45,18 @@ const WhyChooseUs = () => {
           <p className="text-muted-foreground mt-6 text-lg">
             We provide the tools, resources, and expertise you need to achieve your financial goals.
           </p>
-        </div>
+        </motion.div>
 
         {/* Features Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {features.map((feature, index) => (
-            <div 
+            <motion.div 
               key={index}
               className="glass-card p-8 text-center hover:bg-muted/50 transition-all duration-300"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-100px' }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
             >
               <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-6">
                 <feature.icon className="w-8 h-8 text-primary" />
@@ -56,7 +67,7 @@ const WhyChooseUs = () => {
               <p className="text-muted-foreground">
                 {feature.description}
               </p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
