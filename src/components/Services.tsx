@@ -1,4 +1,6 @@
 import { TrendingUp, Bitcoin, BarChart3, LineChart, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 const Services = () => {
   const services = [
@@ -28,7 +30,13 @@ const Services = () => {
     <section id="services" className="py-24 section-light">
       <div className="container mx-auto px-4 lg:px-8">
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <motion.div 
+          className="text-center max-w-3xl mx-auto mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
+          transition={{ duration: 0.6 }}
+        >
           <span className="text-primary font-semibold text-sm uppercase tracking-wider">
             Our Services
           </span>
@@ -38,14 +46,18 @@ const Services = () => {
           <p className="text-muted-foreground mt-6 text-lg">
             From forex and crypto to stocks and personalized advisory, we offer everything you need to succeed in the financial markets.
           </p>
-        </div>
+        </motion.div>
 
         {/* Services Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {services.map((service, index) => (
-            <div 
+            <motion.div 
               key={index}
               className="feature-card group"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-100px' }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
             >
               <div className="icon-box">
                 <service.icon className="w-6 h-6" />
@@ -56,13 +68,13 @@ const Services = () => {
               <p className="text-muted-foreground mb-6">
                 {service.description}
               </p>
-              <a 
-                href="#contact" 
+              <Link 
+                to="/contact" 
                 className="inline-flex items-center gap-2 text-primary font-medium group-hover:gap-3 transition-all"
               >
                 Learn More <ArrowRight size={18} />
-              </a>
-            </div>
+              </Link>
+            </motion.div>
           ))}
         </div>
       </div>
