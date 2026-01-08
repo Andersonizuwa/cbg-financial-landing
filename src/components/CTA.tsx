@@ -21,8 +21,7 @@ const CTA = () => {
 
           <div className="relative z-10 max-w-3xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-              Ready to Start Your{' '}
-              <span className="gradient-text">Investment Journey?</span>
+              <span className="gradient-text">Ready to Start Your Investment Journey?</span>
             </h2>
             <p className="text-muted-foreground text-lg md:text-xl mb-10">
               Open your account today and join thousands of successful traders who trust CBG Financial for their investment needs.
