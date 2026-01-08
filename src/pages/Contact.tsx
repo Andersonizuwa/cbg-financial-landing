@@ -30,7 +30,7 @@ const Contact = () => {
           <div className="space-y-6">
             {/* Email */}
             <motion.a
-              href="mailto:contact@cbgfinancial.com"
+              href="mailto:ranaeputerbaugh@yahoo.com"
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.2 }}
@@ -42,14 +42,14 @@ const Contact = () => {
               <div>
                 <p className="text-sm text-muted-foreground">Email Us</p>
                 <p className="font-semibold group-hover:text-primary transition-colors">
-                  contact@cbgfinancial.com
+                  ranaeputerbaugh@yahoo.com
                 </p>
               </div>
             </motion.a>
 
             {/* WhatsApp */}
             <motion.a
-              href="https://wa.me/1234567890"
+              href="https://wa.me/16462337202"
               target="_blank"
               rel="noopener noreferrer"
               initial={{ opacity: 0, x: -20 }}
@@ -63,7 +63,7 @@ const Contact = () => {
               <div>
                 <p className="text-sm text-muted-foreground">WhatsApp</p>
                 <p className="font-semibold group-hover:text-primary transition-colors">
-                  +1 (234) 567-890
+                  +1 (646) 233-7202
                 </p>
               </div>
             </motion.a>
