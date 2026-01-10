@@ -11,9 +11,9 @@ const Header = () => {
           {/* Logo */}
           <a href="#" className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-lg">C</span>
+              <span className="text-primary-foreground font-bold text-lg">A</span>
             </div>
-            <span className="text-xl font-bold text-foreground">CBG Financial</span>
+            <span className="text-xl font-bold text-foreground">AIDVEST Financial Consultants</span>
           </a>
 
           {/* Desktop Navigation */}

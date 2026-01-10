@@ -43,7 +43,7 @@ const About = () => {
               </h2>
             </div>
             <p className="text-muted-foreground text-lg leading-relaxed">
-              CBG Financial is a leading brokerage firm dedicated to empowering traders and investors worldwide. With cutting-edge technology, expert guidance, and a commitment to transparency, we help you navigate global markets with confidence.
+              AIDVEST Financial Consultants is a leading brokerage firm dedicated to empowering traders and investors worldwide. With cutting-edge technology, expert guidance, and a commitment to transparency, we help you navigate global markets with confidence.
             </p>
             <p className="text-muted-foreground text-lg leading-relaxed">
               Whether you're a seasoned trader or just starting your investment journey, our comprehensive suite of tools and personalized support ensures you have everything you need to succeed.

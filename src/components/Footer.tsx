@@ -9,12 +9,12 @@ const Footer = () => {
           <div className="lg:col-span-2">
             <a href="#" className="flex items-center gap-3 mb-6">
               <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-lg">C</span>
+                <span className="text-primary-foreground font-bold text-lg">A</span>
               </div>
-              <span className="text-xl font-bold text-foreground">CBG Financial</span>
+              <span className="text-xl font-bold text-foreground">AIDVEST Financial Consultants</span>
             </a>
             <p className="text-muted-foreground max-w-md mb-6">
-              Your trusted partner for forex, crypto, stocks, and investment advisory services. Empowering traders worldwide since 2010.
+              Your trusted partner for forex, crypto, stocks, and investment advisory services. Empowering traders worldwide.
             </p>
           </div>
 
@@ -53,7 +53,7 @@ const Footer = () => {
 
         {/* Copyright */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
-          <p>© 2026 CBG Financial. All rights reserved.</p>
+          <p>© 2026 AIDVEST Financial Consultants. All rights reserved.</p>
           <div className="flex gap-6">
             <Link to="/privacy" className="hover:text-primary transition-colors">Privacy Policy</Link>
             <Link to="/terms" className="hover:text-primary transition-colors">Terms of Service</Link>

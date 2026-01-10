@@ -24,11 +24,11 @@ const CTA = () => {
               <span className="gradient-text">Ready to Start Your Investment Journey?</span>
             </h2>
             <p className="text-muted-foreground text-lg md:text-xl mb-10">
-              Open your account today and join thousands of successful traders who trust CBG Financial for their investment needs.
+              Get a free consultation today and join thousands of successful traders who trust AIDVEST Financial Consultants for their investment needs.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link to="/contact" className="btn-primary">
-                Open an Account
+                Get a free consultation
                 <ArrowRight size={20} />
               </Link>
               <Link to="/contact" className="btn-secondary">

@@ -37,10 +37,10 @@ const WhyChooseUs = () => {
           transition={{ duration: 0.6 }}
         >
           <span className="text-primary font-semibold text-sm uppercase tracking-wider">
-            Why CBG Financial
+            Why AIDVEST
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mt-3">
-            Why Choose <span className="gradient-text">CBG Financial?</span>
+            Why Choose <span className="gradient-text">AIDVEST?</span>
           </h2>
           <p className="text-muted-foreground mt-6 text-lg">
             We provide the tools, resources, and expertise you need to achieve your financial goals.

@@ -28,7 +28,7 @@ const TermsOfService = () => {
           <div className="space-y-8 text-muted-foreground">
             <section>
               <h2 className="text-xl font-semibold text-foreground mb-3">1. Acceptance of Terms</h2>
-              <p>By accessing and using CBG Financial services, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services. We reserve the right to modify these terms at any time, and your continued use constitutes acceptance of any changes.</p>
+              <p>By accessing and using AIDVEST Financial Consultants services, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services. We reserve the right to modify these terms at any time, and your continued use constitutes acceptance of any changes.</p>
             </section>
 
             <section>
@@ -38,7 +38,7 @@ const TermsOfService = () => {
 
             <section>
               <h2 className="text-xl font-semibold text-foreground mb-3">3. Services Description</h2>
-              <p>CBG Financial provides information and advisory services related to forex trading, cryptocurrency, stocks, indices, and investment strategies. Our services are for informational purposes only and should not be construed as personalized financial advice.</p>
+              <p>AIDVEST Financial Consultants provides information and advisory services related to forex trading, cryptocurrency, stocks, indices, and investment strategies. Our services are for informational purposes only and should not be construed as personalized financial advice.</p>
             </section>
 
             <section>
@@ -53,12 +53,12 @@ const TermsOfService = () => {
 
             <section>
               <h2 className="text-xl font-semibold text-foreground mb-3">6. Intellectual Property</h2>
-              <p>All content on our website, including text, graphics, logos, and software, is the property of CBG Financial and is protected by intellectual property laws. You may not reproduce, distribute, or create derivative works without our express written permission.</p>
+              <p>All content on our website, including text, graphics, logos, and software, is the property of AIDVEST Financial Consultants and is protected by intellectual property laws. You may not reproduce, distribute, or create derivative works without our express written permission.</p>
             </section>
 
             <section>
               <h2 className="text-xl font-semibold text-foreground mb-3">7. Limitation of Liability</h2>
-              <p>CBG Financial shall not be liable for any direct, indirect, incidental, special, or consequential damages resulting from your use of our services. This includes, but is not limited to, losses arising from trading activities, technical failures, or reliance on information provided.</p>
+              <p>AIDVEST Financial Consultants shall not be liable for any direct, indirect, incidental, special, or consequential damages resulting from your use of our services. This includes, but is not limited to, losses arising from trading activities, technical failures, or reliance on information provided.</p>
             </section>
 
             <section>

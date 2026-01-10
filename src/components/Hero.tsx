@@ -37,11 +37,11 @@ const Hero = () => {
               {' '}Today
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground max-w-xl">
-              Join thousands of investors who trust CBG Financial to help them reach their financial goals with our comprehensive trading and investment solutions.
+              Join thousands of investors who trust AIDVEST Financial Consultants to help them reach their financial goals with our comprehensive trading and investment solutions.
             </p>
             <div className="flex flex-wrap gap-4">
               <Link to="/contact" className="btn-primary">
-                Open an Account
+                Get a free consultation
                 <ArrowRight size={20} />
               </Link>
               <a href="#services" className="btn-secondary">
