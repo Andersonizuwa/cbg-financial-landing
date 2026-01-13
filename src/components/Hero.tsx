@@ -1,12 +1,55 @@
+import { useEffect, useRef } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, useInView, useMotionValue, useSpring } from 'framer-motion';
 import heroBg from '@/assets/hero-bg.jpg';
+
+const Counter = ({ value }: { value: string }) => {
+  const ref = useRef<HTMLSpanElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-10px" });
+  const motionValue = useMotionValue(0);
+  const springValue = useSpring(motionValue, { damping: 30, stiffness: 100 });
+  
+  const match = value.match(/^([^\d]*)(\d+(\.\d+)?)(.*)$/);
+
+  useEffect(() => {
+    if (isInView && match) {
+      motionValue.set(parseFloat(match[2]));
+    }
+  }, [isInView, match, motionValue]);
+
+  useEffect(() => {
+    if (!match) return;
+    
+    return springValue.on("change", (latest) => {
+      if (ref.current) {
+        const numberPart = match[2];
+        const isDecimal = numberPart.includes('.');
+        
+        let formattedNumber;
+        if (isDecimal) {
+            const decimals = numberPart.split('.')[1].length;
+            formattedNumber = latest.toFixed(decimals);
+        } else {
+            formattedNumber = Math.round(latest).toString();
+        }
+        
+        ref.current.textContent = `${match[1]}${formattedNumber}${match[4]}`;
+      }
+    });
+  }, [springValue, match]);
+
+  if (!match) return <span>{value}</span>;
+
+  return <span ref={ref}>{match[1]}0{match[4]}</span>;
+};
 
 const Hero = () => {
   const stats = [
     { value: '$8.2B', label: 'Assets Under Management' },
     { value: '25K+', label: 'Active Traders' },
+    { value: '38+', label: 'Active Partnerships' },
+    { value: '11K+', label: 'Grants Approved' },
     { value: '15+', label: 'Years of Experience' },
     { value: '24/7', label: 'Customer Support' },
   ];
@@ -32,20 +75,19 @@ const Hero = () => {
             transition={{ duration: 0.6, ease: 'easeOut' }}
           >
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-              Invest in Your{' '}
-              <span className="gradient-text">Future</span>
-              {' '}Today
+              Private Capital Advisory &{' '}
+              <span className="gradient-text">Funding Access</span>
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground max-w-xl">
-              Join thousands of investors who trust AIDVEST Financial Consultants to help them reach their financial goals with our comprehensive trading and investment solutions.
+              We work one-on-one with individuals and businesses to assess fit for grants, funding opportunities, and investment solutions.
             </p>
-            <div className="flex flex-wrap gap-4">
-              <Link to="/contact" className="btn-primary">
-                Get a free consultation
+            <div className="flex flex-col gap-4">
+              <Link to="/consultation" className="btn-primary w-fit">
+                Free Private Consultation
                 <ArrowRight size={20} />
               </Link>
-              <a href="#services" className="btn-secondary">
-                Learn More
+              <a href="#grants" className="text-primary font-medium flex items-center gap-2 hover:gap-3 transition-all ml-1">
+                Learn how we work <ArrowRight size={18} />
               </a>
             </div>
           </motion.div>
@@ -60,7 +102,7 @@ const Hero = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
               >
-                <div className="stat-value">{stat.value}</div>
+                <div className="stat-value"><Counter value={stat.value} /></div>
                 <div className="stat-label">{stat.label}</div>
               </motion.div>
             ))}

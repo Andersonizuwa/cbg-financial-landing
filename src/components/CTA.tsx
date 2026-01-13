@@ -21,18 +21,18 @@ const CTA = () => {
 
           <div className="relative z-10 max-w-3xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-              <span className="gradient-text">Ready to Start Your Investment Journey?</span>
+              <span className="gradient-text">Ready to Secure Your Financial Future?</span>
             </h2>
             <p className="text-muted-foreground text-lg md:text-xl mb-10">
-              Get a free consultation today and join thousands of successful traders who trust AIDVEST Financial Consultants for their investment needs.
+              Whether you're looking for private capital advisory, funding opportunities, or grant programs, we're here to help you succeed.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Link to="/contact" className="btn-primary">
-                Get a free consultation
+              <Link to="/consultation" className="btn-primary">
+                Free Consultation
                 <ArrowRight size={20} />
               </Link>
-              <Link to="/contact" className="btn-secondary">
-                Contact Us
+              <Link to="/consultation" className="btn-secondary">
+                Request Consultation
               </Link>
             </div>
           </div>
