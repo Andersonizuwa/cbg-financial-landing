@@ -1,117 +1,50 @@
-import { useEffect, useRef } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { motion, useInView, useMotionValue, useSpring } from 'framer-motion';
+import { motion } from 'framer-motion';
 import heroBg from '@/assets/hero-bg.jpg';
 
-const Counter = ({ value }: { value: string }) => {
-  const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-10px" });
-  const motionValue = useMotionValue(0);
-  const springValue = useSpring(motionValue, { damping: 30, stiffness: 100 });
-  
-  const match = value.match(/^([^\d]*)(\d+(\.\d+)?)(.*)$/);
-
-  useEffect(() => {
-    if (isInView && match) {
-      motionValue.set(parseFloat(match[2]));
-    }
-  }, [isInView, match, motionValue]);
-
-  useEffect(() => {
-    if (!match) return;
-    
-    return springValue.on("change", (latest) => {
-      if (ref.current) {
-        const numberPart = match[2];
-        const isDecimal = numberPart.includes('.');
-        
-        let formattedNumber;
-        if (isDecimal) {
-            const decimals = numberPart.split('.')[1].length;
-            formattedNumber = latest.toFixed(decimals);
-        } else {
-            formattedNumber = Math.round(latest).toString();
-        }
-        
-        ref.current.textContent = `${match[1]}${formattedNumber}${match[4]}`;
-      }
-    });
-  }, [springValue, match]);
-
-  if (!match) return <span>{value}</span>;
-
-  return <span ref={ref}>{match[1]}0{match[4]}</span>;
-};
-
 const Hero = () => {
-  const stats = [
-    { value: '$8.2B', label: 'Assets Under Management' },
-    { value: '25K+', label: 'Active Traders' },
-    { value: '38+', label: 'Active Partnerships' },
-    { value: '11K+', label: 'Grants Approved' },
-    { value: '15+', label: 'Years of Experience' },
-    { value: '24/7', label: 'Customer Support' },
-  ];
-
   return (
-    <section className="relative min-h-screen flex items-center pt-20">
-      {/* Background Image */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${heroBg})` }}
-      >
-        <div className="absolute inset-0 bg-background/80" />
+    <section className="relative min-h-[85vh] flex items-center pt-24">
+      {/* Background Image with Overlay */}
+      <div className="absolute inset-0 z-0">
+        <img 
+          src={heroBg} 
+          alt="Financial Advisory" 
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-[hsl(210,40%,25%)] via-[hsl(210,40%,25%,0.85)] to-transparent" />
       </div>
 
-      {/* Content */}
-      <div className="container mx-auto px-4 lg:px-8 relative z-10 py-20">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left Column - Text */}
-          <motion.div 
-            className="space-y-8"
-            initial={{ opacity: 0, x: -40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, ease: 'easeOut' }}
+      <div className="container mx-auto px-4 lg:px-8 relative z-10">
+        <div className="max-w-2xl">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
           >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-              Private Capital Advisory &{' '}
-              <span className="gradient-text">Funding Access</span>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight heading-serif">
+              Private Capital Advisory & Funding Access
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-xl">
-              We work one-on-one with individuals and businesses to assess fit for grants, funding opportunities, and investment solutions.
+            <p className="text-white/80 text-lg md:text-xl mb-8 leading-relaxed">
+              We work one-on-one with individuals and organizations to explore legitimate grants, funding opportunities, and investment solutions.
             </p>
-            <div className="flex flex-col gap-4">
-              <Link to="/consultation" className="btn-primary w-fit">
-                Free Private Consultation
-                <ArrowRight size={20} />
-              </Link>
-              <a href="#grants" className="text-primary font-medium flex items-center gap-2 hover:gap-3 transition-all ml-1">
-                Learn how we work <ArrowRight size={18} />
-              </a>
+            
+            <Link to="/consultation" className="btn-primary text-lg">
+              Request a Private Consultation
+              <ArrowRight size={20} />
+            </Link>
+
+            <div className="mt-10 flex flex-wrap gap-x-6 gap-y-2 text-white/60 text-sm">
+              <span>Relationship-based</span>
+              <span className="hidden sm:inline">•</span>
+              <span>Eligibility-driven</span>
+              <span className="hidden sm:inline">•</span>
+              <span>No public applications</span>
             </div>
           </motion.div>
-
-          {/* Right Column - Stats */}
-          <div className="grid grid-cols-2 gap-4">
-            {stats.map((stat, index) => (
-              <motion.div 
-                key={index}
-                className="glass-card p-6 md:p-8"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
-              >
-                <div className="stat-value"><Counter value={stat.value} /></div>
-                <div className="stat-label">{stat.label}</div>
-              </motion.div>
-            ))}
-          </div>
         </div>
       </div>
-
-      {/* Bottom Gradient */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
     </section>
   );
 };
