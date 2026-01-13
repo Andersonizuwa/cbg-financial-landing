@@ -2,54 +2,55 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
 
 @layer base {
   :root {
-    /* Dark navy background */
-    --background: 220 26% 14%;
-    --foreground: 0 0% 100%;
+    /* Light cream/white background */
+    --background: 40 20% 98%;
+    --foreground: 210 30% 20%;
 
-    /* Cards - slightly lighter navy */
-    --card: 220 26% 18%;
-    --card-foreground: 0 0% 100%;
+    /* Cards */
+    --card: 0 0% 100%;
+    --card-foreground: 210 30% 20%;
 
-    --popover: 220 26% 18%;
-    --popover-foreground: 0 0% 100%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 30% 20%;
 
-    /* Primary - Emerald Green */
-    --primary: 160 84% 39%;
+    /* Primary - Deep teal green */
+    --primary: 170 50% 35%;
     --primary-foreground: 0 0% 100%;
 
-    /* Secondary - Light backgrounds */
-    --secondary: 0 0% 98%;
-    --secondary-foreground: 220 26% 14%;
+    /* Secondary - Navy blue */
+    --secondary: 210 40% 25%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 220 20% 25%;
-    --muted-foreground: 220 10% 70%;
+    --muted: 210 20% 95%;
+    --muted-foreground: 210 15% 45%;
 
-    --accent: 160 84% 39%;
+    --accent: 170 50% 35%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 20% 25%;
-    --input: 220 20% 25%;
-    --ring: 160 84% 39%;
+    --border: 210 20% 90%;
+    --input: 210 20% 90%;
+    --ring: 170 50% 35%;
 
     --radius: 0.75rem;
 
     /* Custom tokens */
-    --hero-overlay: 220 30% 10%;
-    --glass-bg: 220 26% 20%;
-    --glass-border: 220 20% 30%;
-    --text-secondary: 220 10% 75%;
-    --section-light: 0 0% 98%;
+    --navy: 210 40% 25%;
+    --navy-light: 210 35% 35%;
+    --teal: 170 50% 35%;
+    --teal-light: 170 45% 45%;
+    --cream: 40 20% 98%;
+    --section-light: 210 20% 97%;
   }
 
   .dark {
-    --background: 220 26% 14%;
+    --background: 210 40% 15%;
     --foreground: 0 0% 100%;
   }
 }
@@ -64,35 +65,44 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    @apply bg-background text-foreground antialiased;
     font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Playfair Display', serif;
   }
 }
 
 @layer components {
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary text-primary-foreground font-semibold rounded-lg transition-all duration-300;
+    @apply inline-flex items-center justify-center gap-2 px-8 py-4 font-semibold rounded-lg transition-all duration-300;
+    background-color: hsl(170 50% 35%);
+    color: white;
   }
   
   .btn-primary:hover {
     @apply shadow-lg -translate-y-0.5;
-    background-color: hsl(160 84% 35%);
-    box-shadow: 0 10px 30px -10px hsl(160 84% 39% / 0.4);
+    background-color: hsl(170 50% 30%);
+    box-shadow: 0 10px 30px -10px hsl(170 50% 35% / 0.4);
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center gap-2 px-8 py-4 bg-transparent text-foreground font-semibold rounded-lg border border-border transition-all duration-300;
+    @apply inline-flex items-center justify-center gap-2 px-8 py-4 font-semibold rounded-lg border transition-all duration-300;
+    background-color: transparent;
+    border-color: hsl(210 40% 25%);
+    color: hsl(210 40% 25%);
   }
   
   .btn-secondary:hover {
-    @apply bg-muted;
-    border-color: hsl(220 10% 50%);
+    background-color: hsl(210 40% 25%);
+    color: white;
   }
 
   .glass-card {
-    background-color: hsl(220 26% 20% / 0.5);
+    background-color: hsl(0 0% 100% / 0.8);
     backdrop-filter: blur(8px);
-    border: 1px solid hsl(220 20% 30%);
+    border: 1px solid hsl(210 20% 90%);
     @apply rounded-xl;
   }
 
@@ -102,28 +112,35 @@
   
   .feature-card:hover {
     @apply shadow-lg -translate-y-1;
+    border-color: hsl(170 50% 35% / 0.3);
   }
 
   .icon-box {
-    @apply w-14 h-14 rounded-xl flex items-center justify-center text-primary mb-6;
-    background-color: hsl(160 84% 39% / 0.1);
+    @apply w-16 h-16 rounded-xl flex items-center justify-center mb-6;
+    background-color: hsl(170 50% 35% / 0.1);
+    color: hsl(170 50% 35%);
   }
 
   .section-light {
-    background-color: hsl(0 0% 98%);
-    @apply text-secondary-foreground;
+    background-color: hsl(210 20% 97%);
+  }
+
+  .section-navy {
+    background-color: hsl(210 40% 25%);
   }
 
   .nav-link {
-    @apply text-muted-foreground transition-colors duration-200 font-medium;
+    @apply transition-colors duration-200 font-medium;
+    color: hsl(210 30% 30%);
   }
   
   .nav-link:hover {
-    @apply text-foreground;
+    color: hsl(170 50% 35%);
   }
 
   .stat-value {
-    @apply text-4xl font-bold text-primary mb-2;
+    @apply text-4xl font-bold mb-2;
+    color: hsl(170 50% 35%);
   }
   
   @media (min-width: 768px) {
@@ -133,14 +150,40 @@
   }
 
   .stat-label {
-    @apply text-sm text-muted-foreground;
+    @apply text-sm;
+    color: hsl(210 15% 45%);
   }
 
   .gradient-text {
-    background: linear-gradient(to right, hsl(160 84% 39%), hsl(160 70% 50%));
+    background: linear-gradient(to right, hsl(170 50% 35%), hsl(170 45% 45%));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+  }
+
+  .heading-serif {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+  }
+
+  .text-navy {
+    color: hsl(210 40% 25%);
+  }
+
+  .bg-navy {
+    background-color: hsl(210 40% 25%);
+  }
+
+  .text-teal {
+    color: hsl(170 50% 35%);
+  }
+
+  .bg-teal {
+    background-color: hsl(170 50% 35%);
+  }
+
+  .border-teal {
+    border-color: hsl(170 50% 35%);
   }
 }
 
@@ -151,13 +194,5 @@
 
   .border-glass-border {
     border-color: hsl(var(--glass-border));
-  }
-
-  .text-text-secondary {
-    color: hsl(var(--text-secondary));
-  }
-
-  .bg-section-light {
-    background-color: hsl(var(--section-light));
   }
 }
