@@ -4,47 +4,72 @@ import { motion } from 'framer-motion';
 import heroBg from '@/assets/hero-bg.jpg';
 
 const Hero = () => {
+  const stats = [
+    { value: '$8.2B', label: 'Assets Under Management' },
+    { value: '25K+', label: 'Active Traders' },
+    { value: '15+', label: 'Years of Experience' },
+    { value: '24/7', label: 'Customer Support' },
+  ];
+
   return (
-    <section className="relative min-h-[85vh] flex items-center pt-24">
-      {/* Background Image with Overlay */}
-      <div className="absolute inset-0 z-0">
-        <img 
-          src={heroBg} 
-          alt="Financial Advisory" 
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-[hsl(210,40%,25%)] via-[hsl(210,40%,25%,0.85)] to-transparent" />
+    <section className="relative min-h-screen flex items-center pt-20">
+      {/* Background Image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${heroBg})` }}
+      >
+        <div className="absolute inset-0 bg-background/80" />
       </div>
 
-      <div className="container mx-auto px-4 lg:px-8 relative z-10">
-        <div className="max-w-2xl">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+      {/* Content */}
+      <div className="container mx-auto px-4 lg:px-8 relative z-10 py-20">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Left Column - Text */}
+          <motion.div 
+            className="space-y-8"
+            initial={{ opacity: 0, x: -40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
           >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight heading-serif">
-              Private Capital Advisory & Funding Access
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+              Invest in Your{' '}
+              <span className="gradient-text">Future</span>
+              {' '}Today
             </h1>
-            <p className="text-white/80 text-lg md:text-xl mb-8 leading-relaxed">
-              We work one-on-one with individuals and organizations to explore legitimate grants, funding opportunities, and investment solutions.
+            <p className="text-lg md:text-xl text-muted-foreground max-w-xl">
+              Join thousands of investors who trust AIDVEST Financial Consultants to help them reach their financial goals with our comprehensive trading and investment solutions.
             </p>
-            
-            <Link to="/consultation" className="btn-primary text-lg">
-              Request a Private Consultation
-              <ArrowRight size={20} />
-            </Link>
-
-            <div className="mt-10 flex flex-wrap gap-x-6 gap-y-2 text-white/60 text-sm">
-              <span>Relationship-based</span>
-              <span className="hidden sm:inline">•</span>
-              <span>Eligibility-driven</span>
-              <span className="hidden sm:inline">•</span>
-              <span>No public applications</span>
+            <div className="flex flex-wrap gap-4">
+              <Link to="/contact" className="btn-primary">
+                Get a free consultation
+                <ArrowRight size={20} />
+              </Link>
+              <a href="#services" className="btn-secondary">
+                Learn More
+              </a>
             </div>
           </motion.div>
+
+          {/* Right Column - Stats */}
+          <div className="grid grid-cols-2 gap-4">
+            {stats.map((stat, index) => (
+              <motion.div 
+                key={index}
+                className="glass-card p-6 md:p-8"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
+              >
+                <div className="stat-value">{stat.value}</div>
+                <div className="stat-label">{stat.label}</div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
+
+      {/* Bottom Gradient */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
     </section>
   );
 };

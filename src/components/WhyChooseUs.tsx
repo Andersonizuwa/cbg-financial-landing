@@ -1,204 +1,74 @@
+import { Shield, Eye, Zap, HeadphonesIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { useState } from 'react';
-import { toast } from 'sonner';
 
 const WhyChooseUs = () => {
-  const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
-    phone: '',
-    interest: 'grants',
-    description: '',
-  });
-
-  const steps = [
+  const features = [
     {
-      number: '1',
-      title: 'Initial Private Consultation',
-      description: 'We understand your goals, situation, and expectations.',
+      icon: Shield,
+      title: 'Bank-Level Security',
+      description: 'Your funds and data are protected with advanced encryption and multi-layer security protocols.',
     },
     {
-      number: '2',
-      title: 'One-on-One Screening',
-      description: 'We assess suitability for grants, funding, or investment pathways.',
+      icon: Eye,
+      title: 'Full Transparency',
+      description: 'No hidden fees, clear pricing, and real-time reporting on all your trades and investments.',
     },
     {
-      number: '3',
-      title: 'Advisory & Next Steps',
-      description: "If there's a fit, we outline viable options and proceed accordingly.",
+      icon: Zap,
+      title: 'Lightning Fast Execution',
+      description: 'Ultra-low latency order execution ensures you never miss a trading opportunity.',
     },
     {
-      number: '4',
-      title: 'Preparation Strategies',
-      description: 'Start with a prioritize goal, and access readiness.',
+      icon: HeadphonesIcon,
+      title: 'Professional Support',
+      description: 'Our expert team is available 24/7 to help you with any questions or concerns.',
     },
   ];
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    toast.success('Thank you! We will contact you shortly.');
-    setFormData({
-      fullName: '',
-      email: '',
-      phone: '',
-      interest: 'grants',
-      description: '',
-    });
-  };
-
   return (
-    <section id="why-us" className="py-20 bg-white">
+    <section id="why-us" className="py-24 bg-background">
       <div className="container mx-auto px-4 lg:px-8">
         {/* Header */}
         <motion.div 
-          className="text-center max-w-3xl mx-auto mb-12"
+          className="text-center max-w-3xl mx-auto mb-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-navy mb-4 heading-serif">
-            Why Choose CBG Financial
+          <span className="text-primary font-semibold text-sm uppercase tracking-wider">
+            Why AIDVEST
+          </span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mt-3">
+            Why Choose <span className="gradient-text">AIDVEST?</span>
           </h2>
-          <p className="text-muted-foreground text-lg">
-            Expertise and integrity in grant and capital advisory
+          <p className="text-muted-foreground mt-6 text-lg">
+            We provide the tools, resources, and expertise you need to achieve your financial goals.
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-          {/* Steps */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="grid sm:grid-cols-2 gap-6">
-              {steps.map((step, index) => (
-                <div key={index} className="relative">
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-full bg-teal flex items-center justify-center text-white font-bold text-lg shrink-0">
-                      {step.number}
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-navy mb-2">{step.title}</h3>
-                      <p className="text-sm text-muted-foreground">{step.description}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-            
-            <p className="mt-8 text-sm text-muted-foreground italic">
-              Not all inquiries will be a fit — and that's intentional.
-            </p>
-          </motion.div>
-
-          {/* Contact Form */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-navy mb-1.5">
-                  Full Name
-                </label>
-                <input
-                  type="text"
-                  value={formData.fullName}
-                  onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-teal focus:ring-1 focus:ring-teal outline-none transition-colors"
-                  required
-                />
+        {/* Features Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {features.map((feature, index) => (
+            <motion.div 
+              key={index}
+              className="glass-card p-8 text-center hover:bg-muted/50 transition-all duration-300"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-100px' }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+            >
+              <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-6">
+                <feature.icon className="w-8 h-8 text-primary" />
               </div>
-
-              <div>
-                <label className="block text-sm font-medium text-navy mb-1.5">
-                  Email Address
-                </label>
-                <input
-                  type="email"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-teal focus:ring-1 focus:ring-teal outline-none transition-colors"
-                  required
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-navy mb-1.5">
-                  Phone Number
-                </label>
-                <input
-                  type="tel"
-                  value={formData.phone}
-                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-teal focus:ring-1 focus:ring-teal outline-none transition-colors"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-navy mb-1.5">
-                  Area of Interest
-                </label>
-                <div className="flex flex-wrap gap-4">
-                  <label className="flex items-center gap-2 cursor-pointer">
-                    <input
-                      type="radio"
-                      name="interest"
-                      value="grants"
-                      checked={formData.interest === 'grants'}
-                      onChange={(e) => setFormData({ ...formData, interest: e.target.value })}
-                      className="w-4 h-4 text-teal"
-                    />
-                    <span className="text-sm text-muted-foreground">Grants & Funding</span>
-                  </label>
-                  <label className="flex items-center gap-2 cursor-pointer">
-                    <input
-                      type="radio"
-                      name="interest"
-                      value="investment"
-                      checked={formData.interest === 'investment'}
-                      onChange={(e) => setFormData({ ...formData, interest: e.target.value })}
-                      className="w-4 h-4 text-teal"
-                    />
-                    <span className="text-sm text-muted-foreground">Investment Advisory</span>
-                  </label>
-                  <label className="flex items-center gap-2 cursor-pointer">
-                    <input
-                      type="radio"
-                      name="interest"
-                      value="both"
-                      checked={formData.interest === 'both'}
-                      onChange={(e) => setFormData({ ...formData, interest: e.target.value })}
-                      className="w-4 h-4 text-teal"
-                    />
-                    <span className="text-sm text-muted-foreground">Both</span>
-                  </label>
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-navy mb-1.5">
-                  Brief Description (optional)
-                </label>
-                <textarea
-                  value={formData.description}
-                  onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                  rows={3}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-teal focus:ring-1 focus:ring-teal outline-none transition-colors resize-none"
-                  placeholder="Tell us briefly about your goals..."
-                />
-              </div>
-
-              <button type="submit" className="btn-primary w-full">
-                Submit Inquiry
-              </button>
-            </form>
-          </motion.div>
+              <h3 className="text-xl font-semibold mb-4">
+                {feature.title}
+              </h3>
+              <p className="text-muted-foreground">
+                {feature.description}
+              </p>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
