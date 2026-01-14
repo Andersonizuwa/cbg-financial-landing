@@ -40,7 +40,7 @@ const Hero = () => {
               Join thousands of investors who trust AIDVEST Financial Consultants to help them reach their financial goals with our comprehensive trading and investment solutions.
             </p>
             <div className="flex flex-wrap gap-4">
-              <Link to="/contact" className="btn-primary">
+              <Link to="/consultation" className="btn-primary">
                 Get a free consultation
                 <ArrowRight size={20} />
               </Link>
