@@ -6,7 +6,10 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 const Consultation = () => {
   const { toast } = useToast();
@@ -15,7 +18,8 @@ const Consultation = () => {
     name: '',
     email: '',
     phone: '',
-    investmentGoal: '',
+    guidanceType: '',
+    clientType: '',
     message: ''
   });
 
@@ -23,6 +27,13 @@ const Consultation = () => {
     setFormData(prev => ({
       ...prev,
       [e.target.name]: e.target.value
+    }));
+  };
+
+  const handleSelectChange = (name: string, value: string) => {
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
     }));
   };
 
@@ -42,96 +53,120 @@ const Consultation = () => {
       name: '',
       email: '',
       phone: '',
-      investmentGoal: '',
+      guidanceType: '',
+      clientType: '',
       message: ''
     });
     setIsSubmitting(false);
   };
 
   return (
-    <div className="min-h-screen bg-background py-12 px-4">
-      <div className="container mx-auto max-w-2xl">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <Link 
-            to="/" 
-            className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-8"
+    <div className="min-h-screen bg-background flex flex-col">
+      <Header />
+      
+      <main className="flex-1 pt-32 pb-16 px-4">
+        <div className="container mx-auto max-w-2xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
           >
-            <ArrowLeft size={20} />
-            Back to Home
-          </Link>
-
-          <div className="glass-card p-8 md:p-12">
-            <h1 className="text-3xl md:text-4xl font-bold mb-4">
-              <span className="gradient-text">Free Consultation</span>
+            <h1 className="text-3xl md:text-4xl font-bold mb-2 text-center">
+              Consultation <span className="gradient-text">Request Form</span>
             </h1>
-            <p className="text-muted-foreground mb-8">
-              Fill out the form below and one of our financial experts will reach out to schedule your personalized consultation.
+            <p className="text-muted-foreground mb-10 text-center">
+              Complete the form below and our team will reach out to schedule your private consultation.
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <Label htmlFor="name">Full Name *</Label>
-                  <Input
-                    id="name"
-                    name="name"
-                    placeholder="John Doe"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="email">Email Address *</Label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    placeholder="john@example.com"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <Label htmlFor="phone">Phone Number</Label>
-                  <Input
-                    id="phone"
-                    name="phone"
-                    type="tel"
-                    placeholder="+1 (555) 000-0000"
-                    value={formData.phone}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="investmentGoal">Investment Goal</Label>
-                  <Input
-                    id="investmentGoal"
-                    name="investmentGoal"
-                    placeholder="e.g., Retirement, Wealth Building"
-                    value={formData.investmentGoal}
-                    onChange={handleChange}
-                  />
-                </div>
+              <div className="space-y-2">
+                <Label htmlFor="name">Full Name</Label>
+                <Input
+                  id="name"
+                  name="name"
+                  placeholder="John Doe"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                  className="bg-muted border-border"
+                />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="message">Tell us about your investment needs</Label>
+                <Label htmlFor="email">Email Address</Label>
+                <Input
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="john@example.com"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  className="bg-muted border-border"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="phone">Phone Number (optional but recommended)</Label>
+                <Input
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  placeholder="+1 (555) 000-0000"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  className="bg-muted border-border"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label>What are you seeking guidance for?</Label>
+                <Select 
+                  value={formData.guidanceType} 
+                  onValueChange={(value) => handleSelectChange('guidanceType', value)}
+                >
+                  <SelectTrigger className="bg-muted border-border">
+                    <SelectValue placeholder="Select an option" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="grants">Grant & Funding Opportunities</SelectItem>
+                    <SelectItem value="investment">Investment Advisory</SelectItem>
+                    <SelectItem value="capital">Capital Structuring</SelectItem>
+                    <SelectItem value="trading">Trading Services</SelectItem>
+                    <SelectItem value="other">Other</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="space-y-2">
+                <Label>Which best describes you?</Label>
+                <Select 
+                  value={formData.clientType} 
+                  onValueChange={(value) => handleSelectChange('clientType', value)}
+                >
+                  <SelectTrigger className="bg-muted border-border">
+                    <SelectValue placeholder="Select an option" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="individual">Individual Investor</SelectItem>
+                    <SelectItem value="business">Business Owner</SelectItem>
+                    <SelectItem value="institution">Institutional Client</SelectItem>
+                    <SelectItem value="startup">Startup Founder</SelectItem>
+                    <SelectItem value="ngo">NGO / Non-Profit</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="message">Briefly describe your situation or objective</Label>
                 <Textarea
                   id="message"
                   name="message"
-                  placeholder="Share any details about your current financial situation and goals..."
-                  rows={5}
+                  placeholder="Project, business, funding goal, or investment interest"
+                  rows={4}
                   value={formData.message}
                   onChange={handleChange}
+                  className="bg-muted border-border"
                 />
               </div>
 
@@ -144,7 +179,7 @@ const Consultation = () => {
                   'Submitting...'
                 ) : (
                   <>
-                    Request Consultation
+                    Submit Request
                     <Send size={18} />
                   </>
                 )}
@@ -157,9 +192,11 @@ const Consultation = () => {
               {' '}and{' '}
               <Link to="/terms" className="text-primary hover:underline">Terms of Service</Link>.
             </p>
-          </div>
-        </motion.div>
-      </div>
+          </motion.div>
+        </div>
+      </main>
+
+      <Footer />
     </div>
   );
 };

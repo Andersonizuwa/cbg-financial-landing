@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -9,21 +10,24 @@ const Header = () => {
       <div className="container mx-auto px-4 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-3">
+          <Link to="/" className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
               <span className="text-primary-foreground font-bold text-lg">A</span>
             </div>
-            <span className="text-xl font-bold text-foreground">AIDVEST Financial Consultants</span>
-          </a>
+            <div>
+              <span className="text-lg font-bold block">AIDVEST</span>
+              <span className="text-xs text-muted-foreground hidden sm:block">FINANCIAL CONSULTANTS</span>
+            </div>
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-8">
             <a href="#about" className="nav-link">About Us</a>
             <a href="#services" className="nav-link">Services</a>
+            <a href="#grants" className="nav-link">Grants</a>
             <a href="#why-us" className="nav-link">Why Choose Us</a>
-            <a href="#contact" className="nav-link">Contact</a>
+            <Link to="/consultation" className="nav-link text-primary font-semibold">Free Consultation</Link>
           </nav>
-
 
           {/* Mobile Menu Button */}
           <button 
@@ -40,8 +44,9 @@ const Header = () => {
             <nav className="flex flex-col gap-4">
               <a href="#about" className="nav-link py-2" onClick={() => setIsMenuOpen(false)}>About Us</a>
               <a href="#services" className="nav-link py-2" onClick={() => setIsMenuOpen(false)}>Services</a>
+              <a href="#grants" className="nav-link py-2" onClick={() => setIsMenuOpen(false)}>Grants</a>
               <a href="#why-us" className="nav-link py-2" onClick={() => setIsMenuOpen(false)}>Why Choose Us</a>
-              <a href="#contact" className="nav-link py-2" onClick={() => setIsMenuOpen(false)}>Contact</a>
+              <Link to="/consultation" className="nav-link py-2 text-primary font-semibold" onClick={() => setIsMenuOpen(false)}>Free Consultation</Link>
             </nav>
           </div>
         )}
