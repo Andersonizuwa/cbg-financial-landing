@@ -27,7 +27,7 @@ const CTA = () => {
               Get a free consultation today and join thousands of successful traders who trust AIDVEST Financial Consultants for their investment needs.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Link to="/contact" className="btn-primary">
+              <Link to="/consultation" className="btn-primary">
                 Get a free consultation
                 <ArrowRight size={20} />
               </Link>
