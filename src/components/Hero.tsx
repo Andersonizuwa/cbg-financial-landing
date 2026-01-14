@@ -7,6 +7,8 @@ const Hero = () => {
   const stats = [
     { value: '$8.2B', label: 'Assets Under Management' },
     { value: '25K+', label: 'Active Traders' },
+    { value: '38+', label: 'Active Partnerships' },
+    { value: '11K+', label: 'Grants Approved' },
     { value: '15+', label: 'Years of Experience' },
     { value: '24/7', label: 'Customer Support' },
   ];
@@ -18,7 +20,7 @@ const Hero = () => {
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${heroBg})` }}
       >
-        <div className="absolute inset-0 bg-background/80" />
+        <div className="absolute inset-0 bg-background/85" />
       </div>
 
       {/* Content */}
@@ -31,26 +33,26 @@ const Hero = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, ease: 'easeOut' }}
           >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-              Invest in Your{' '}
-              <span className="gradient-text">Future</span>
-              {' '}Today
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight italic">
+              Private Capital Advisory &{' '}
+              <span className="gradient-text">Funding Access</span>
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground max-w-xl">
-              Join thousands of investors who trust AIDVEST Financial Consultants to help them reach their financial goals with our comprehensive trading and investment solutions.
+              We work one-on-one with individuals and businesses to assess fit for grants, funding opportunities, and investment solutions.
             </p>
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-col sm:flex-row gap-4">
               <Link to="/consultation" className="btn-primary">
-                Get a free consultation
+                Free Private Consultation
                 <ArrowRight size={20} />
               </Link>
-              <a href="#services" className="btn-secondary">
-                Learn More
+              <a href="#services" className="inline-flex items-center gap-2 text-primary font-medium hover:gap-3 transition-all">
+                Learn how we work
+                <ArrowRight size={18} />
               </a>
             </div>
           </motion.div>
 
-          {/* Right Column - Stats */}
+          {/* Right Column - Stats Grid */}
           <div className="grid grid-cols-2 gap-4">
             {stats.map((stat, index) => (
               <motion.div 
