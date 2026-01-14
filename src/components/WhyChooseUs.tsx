@@ -1,27 +1,32 @@
-import { Shield, Eye, Zap, HeadphonesIcon } from 'lucide-react';
+import { Shield, Eye, Users, FileCheck, ClipboardCheck } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const WhyChooseUs = () => {
   const features = [
     {
-      icon: Shield,
-      title: 'Bank-Level Security',
-      description: 'Your funds and data are protected with advanced encryption and multi-layer security protocols.',
+      icon: Users,
+      title: 'Private, Human-Led Advisory',
+      description: 'We work directly with clients through one-on-one consultations to assess fit, eligibility, and strategic direction — no automated approvals or generic advice.',
+    },
+    {
+      icon: FileCheck,
+      title: 'Eligibility-Driven Guidance',
+      description: 'We help clients understand which grant, funding, or investment pathways are realistic and worth pursuing — and which are not.',
     },
     {
       icon: Eye,
-      title: 'Full Transparency',
-      description: 'No hidden fees, clear pricing, and real-time reporting on all your trades and investments.',
+      title: 'Transparent Advisory Fees',
+      description: 'Our services are advisory-based with clearly explained fees. Your first consultation with us is always free.',
     },
     {
-      icon: Zap,
-      title: 'Lightning Fast Execution',
-      description: 'Ultra-low latency order execution ensures you never miss a trading opportunity.',
+      icon: ClipboardCheck,
+      title: 'Preparation & Positioning Support',
+      description: 'We help clients prepare properly for legitimate opportunities, improving readiness before any applications or investment decisions.',
     },
     {
-      icon: HeadphonesIcon,
-      title: 'Professional Support',
-      description: 'Our expert team is available 24/7 to help you with any questions or concerns.',
+      icon: Shield,
+      title: 'Discretion & Professionalism',
+      description: 'We prioritize confidentiality, professionalism, and long-term relationships over volume or quick wins.',
     },
   ];
 
@@ -37,18 +42,18 @@ const WhyChooseUs = () => {
           transition={{ duration: 0.6 }}
         >
           <span className="text-primary font-semibold text-sm uppercase tracking-wider">
-            Why AIDVEST
+            Why Choose AIDVEST Financial Consultants
           </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mt-3">
+          {/* <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mt-3">
             Why Choose <span className="gradient-text">AIDVEST?</span>
-          </h2>
+          </h2> */}
           <p className="text-muted-foreground mt-6 text-lg">
-            We provide the tools, resources, and expertise you need to achieve your financial goals.
+            We provide the tools, expertise, and strategic connections that help our clients pursue sustainable, long-term financial outcomes.
           </p>
         </motion.div>
 
         {/* Features Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 justify-center">
           {features.map((feature, index) => (
             <motion.div 
               key={index}

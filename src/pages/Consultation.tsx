@@ -14,13 +14,15 @@ import Footer from '@/components/Footer';
 const Consultation = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
     guidanceType: '',
     clientType: '',
-    message: ''
+    message: '',
+    referral: ''
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -41,24 +43,69 @@ const Consultation = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    toast({
-      title: "Request Submitted!",
-      description: "We'll contact you within 24 hours to schedule your free consultation.",
-    });
-    
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      guidanceType: '',
-      clientType: '',
-      message: ''
-    });
-    setIsSubmitting(false);
+    try {
+      const response = await fetch('https://formspree.io/f/xzddbyjp', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+        toast({
+          title: "Request Submitted!",
+          description: "We've received your consultation request.",
+        });
+      } else {
+        toast({
+          title: "Error",
+          description: "There was a problem submitting your request. Please try again.",
+          variant: "destructive"
+        });
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "There was a problem submitting your request. Please try again.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
+
+  if (submitted) {
+    return (
+      <div className="min-h-screen bg-background flex flex-col">
+        <Header />
+        <main className="flex-1 flex items-center justify-center p-4 pt-32">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="bg-card border border-border p-8 rounded-2xl max-w-lg w-full text-center shadow-lg"
+          >
+            <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+              <Send className="text-primary" size={32} />
+            </div>
+            <h2 className="text-2xl font-bold mb-4">Consultation Request Received</h2>
+            <div className="space-y-4 text-muted-foreground mb-8">
+              <p>Our team reviews each request to determine mutual fit.</p>
+              <p>If appropriate, a team member will contact you.</p>
+            </div>
+            <Link to="/">
+              <Button className="w-full btn-primary gap-2">
+                <ArrowLeft size={18} />
+                Back to home page
+              </Button>
+            </Link>
+          </motion.div>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
@@ -129,11 +176,9 @@ const Consultation = () => {
                     <SelectValue placeholder="Select an option" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="grants">Grant & Funding Opportunities</SelectItem>
+                    <SelectItem value="grants">Grants & Funding</SelectItem>
                     <SelectItem value="investment">Investment Advisory</SelectItem>
-                    <SelectItem value="capital">Capital Structuring</SelectItem>
-                    <SelectItem value="trading">Trading Services</SelectItem>
-                    <SelectItem value="other">Other</SelectItem>
+                    <SelectItem value="both">Both</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -148,11 +193,9 @@ const Consultation = () => {
                     <SelectValue placeholder="Select an option" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="individual">Individual Investor</SelectItem>
+                    <SelectItem value="individual">Individual / Professional</SelectItem>
                     <SelectItem value="business">Business Owner</SelectItem>
-                    <SelectItem value="institution">Institutional Client</SelectItem>
-                    <SelectItem value="startup">Startup Founder</SelectItem>
-                    <SelectItem value="ngo">NGO / Non-Profit</SelectItem>
+                    <SelectItem value="nonprofit">Organization / Nonprofit</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -165,6 +208,18 @@ const Consultation = () => {
                   placeholder="Project, business, funding goal, or investment interest"
                   rows={4}
                   value={formData.message}
+                  onChange={handleChange}
+                  className="bg-muted border-border"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="referral">Referral (Where did you hear about us)</Label>
+                <Input
+                  id="referral"
+                  name="referral"
+                  placeholder="e.g. Social Media, Friend, Search Engine"
+                  value={formData.referral}
                   onChange={handleChange}
                   className="bg-muted border-border"
                 />
@@ -187,10 +242,7 @@ const Consultation = () => {
             </form>
 
             <p className="text-xs text-muted-foreground mt-6 text-center">
-              By submitting this form, you agree to our{' '}
-              <Link to="/privacy" className="text-primary hover:underline">Privacy Policy</Link>
-              {' '}and{' '}
-              <Link to="/terms" className="text-primary hover:underline">Terms of Service</Link>.
+              Consultations are eligibility-based. Grant access and investment outcomes are subject to third-party approval and market risk.
             </p>
           </motion.div>
         </div>

@@ -1,5 +1,6 @@
-import { Building2, Scale, ShieldCheck, CheckCircle2 } from 'lucide-react';
+import { Building2, Scale, ShieldCheck, CheckCircle2, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const InvestmentAdvisory = () => {
   const features = [
@@ -73,6 +74,12 @@ const InvestmentAdvisory = () => {
               <p className="text-sm text-primary">
                 Our investment services are tailored for each client's suitability and risk appetite.
               </p>
+            </div>
+
+            <div className="mt-6">
+              <Link to="/consultation" className="btn-primary inline-flex items-center gap-2">
+                Investment Advisory <ArrowRight size={18} />
+              </Link>
             </div>
           </motion.div>
 

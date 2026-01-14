@@ -1,16 +1,36 @@
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
 import heroBg from '@/assets/hero-bg.jpg';
+
+const AnimatedCounter = ({ end, duration = 2000, decimals = 0 }: { end: number, duration?: number, decimals?: number }) => {
+  const [count, setCount] = useState(0);
+  
+  useEffect(() => {
+    let startTime: number | null = null;
+    const animate = (currentTime: number) => {
+      if (!startTime) startTime = currentTime;
+      const progress = Math.min((currentTime - startTime) / duration, 1);
+      setCount(progress * end);
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    };
+    requestAnimationFrame(animate);
+  }, [end, duration]);
+
+  return <>{count.toFixed(decimals)}</>;
+};
 
 const Hero = () => {
   const stats = [
-    { value: '$8.2B', label: 'Assets Under Management' },
-    { value: '25K+', label: 'Active Traders' },
-    { value: '38+', label: 'Active Partnerships' },
-    { value: '11K+', label: 'Grants Approved' },
-    { value: '15+', label: 'Years of Experience' },
-    { value: '24/7', label: 'Customer Support' },
+    { prefix: '$', value: 8.2, suffix: 'B', label: 'Assets Under Management', decimals: 1 },
+    { value: 25, suffix: 'K+', label: 'Active Traders' },
+    { value: 38, suffix: '+', label: 'Active Partnerships' },
+    { value: 11, suffix: 'K+', label: 'Grants Approved' },
+    { value: 15, suffix: '+', label: 'Years of Experience' },
+    { text: '24/7', label: 'Customer Support' },
   ];
 
   return (
@@ -62,7 +82,15 @@ const Hero = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
               >
-                <div className="stat-value">{stat.value}</div>
+                <div className="stat-value">
+                  {stat.text ? stat.text : (
+                    <>
+                      {stat.prefix}
+                      <AnimatedCounter end={stat.value!} decimals={stat.decimals} />
+                      {stat.suffix}
+                    </>
+                  )}
+                </div>
                 <div className="stat-label">{stat.label}</div>
               </motion.div>
             ))}

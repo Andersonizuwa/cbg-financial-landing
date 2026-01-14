@@ -1,5 +1,6 @@
-import { CheckCircle2 } from 'lucide-react';
+import { CheckCircle2, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const GrantFunding = () => {
   const benefits = [
@@ -49,6 +50,12 @@ const GrantFunding = () => {
               <p className="text-sm text-primary">
                 Grant access is eligibility-based and reviewed during a one-on-one consultation.
               </p>
+            </div>
+
+            <div className="mt-6">
+              <Link to="/consultation" className="btn-primary inline-flex items-center gap-2">
+                Grant & Funding Advisory <ArrowRight size={18} />
+              </Link>
             </div>
           </div>
         </motion.div>
