@@ -53,7 +53,7 @@ const Hero = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, ease: 'easeOut' }}
           >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight italic">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
               Private Capital Advisory &{' '}
               <span className="gradient-text">Funding Access</span>
             </h1>

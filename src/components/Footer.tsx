@@ -48,13 +48,13 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Risk Disclaimer */}
+      {/* Risk & Advisory Disclaimer */}
       <div className="border-t border-border bg-white">
         <div className="container mx-auto px-4 lg:px-8 py-8">
           <div className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
-            <h5 className="font-bold text-black mb-2 uppercase tracking-wide">Risk Disclaimer</h5>
+            <h5 className="font-bold text-black mb-2 uppercase tracking-wide">Risk & Advisory Disclaimer</h5>
             <p className="text-sm text-black leading-relaxed font-medium">
-              Trading foreign exchange, cryptocurrencies, and other financial instruments involves significant risk and may not be suitable for all investors. The high degree of leverage can work against you as well as for you. Before deciding to trade, you should carefully consider your investment objectives, level of experience, and risk appetite. The possibility exists that you could sustain a loss of some or all of your initial investment. You should be aware of all the risks associated with trading and seek advice from an independent financial advisor if you have any doubts.
+              Aidvest Financial Consultants provides advisory, educational, and preparatory services only. We do not issue grants, provide loans, or guarantee funding, investment returns, or financial outcomes. Eligibility for grants, funding programs, or investment opportunities is determined by third-party institutions, including government bodies, nonprofits, and private organizations. All consultations are conducted on a one-on-one, eligibility-based basis and are intended for informational purposes only. Past results do not guarantee future outcomes. Clients are encouraged to conduct independent due diligence where appropriate.
             </p>
           </div>
         </div>

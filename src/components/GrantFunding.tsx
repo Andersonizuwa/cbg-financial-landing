@@ -22,7 +22,7 @@ const GrantFunding = () => {
           <span className="text-primary font-semibold text-sm uppercase tracking-wider">
             Grant & Funding Advisory
           </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mt-4 italic">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mt-4">
             Legitimate Grant & Funding Opportunities
           </h2>
           <p className="text-muted-foreground mt-6 text-lg max-w-3xl mx-auto">

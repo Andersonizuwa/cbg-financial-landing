@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { ArrowLeft, Send } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -12,6 +12,14 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
 const Consultation = () => {
+  useEffect(() => {
+    document.title = "Free Consultation | AIDVEST Financial Consultants";
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Request a free private consultation with AIDVEST to assess your eligibility for grants, funding, and investment opportunities.');
+    }
+  }, []);
+
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);

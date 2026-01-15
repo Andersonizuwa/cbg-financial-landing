@@ -43,7 +43,7 @@ const InvestmentAdvisory = () => {
               <span className="text-primary font-semibold text-sm uppercase tracking-wider">
                 Investment Advisory & Capital Structuring
               </span>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mt-4 italic leading-tight">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mt-4 leading-tight">
                 Tailored Guidance for Long-Term Capital Growth
               </h2>
             </div>
