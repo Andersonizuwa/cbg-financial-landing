@@ -16,13 +16,13 @@ const Consultation = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    guidanceType: '',
-    clientType: '',
-    message: '',
-    referral: ''
+    "Full Name": '',
+    "Email Address": '',
+    "Phone Number": '',
+    "Seeking Guidance For": '',
+    "Describes You": '',
+    "Situation or Objective": '',
+    "Referral": ''
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -39,17 +39,27 @@ const Consultation = () => {
     }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
     
+    const data = new FormData();
+    
+    // Add all form data to the FormData object
+    Object.entries(formData).forEach(([key, value]) => {
+      data.append(key, value);
+    });
+    
+    // Add the user's local time to the submission
+    data.append('submission_local_time', new Date().toString());
+
     try {
       const response = await fetch('https://formspree.io/f/xzddbyjp', {
         method: 'POST',
+        body: data,
         headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
+          'Accept': 'application/json'
+        }
       });
 
       if (response.ok) {
@@ -59,13 +69,27 @@ const Consultation = () => {
           description: "We've received your consultation request.",
         });
       } else {
-        toast({
-          title: "Error",
-          description: "There was a problem submitting your request. Please try again.",
-          variant: "destructive"
-        });
+        // Try to get more specific error info from Formspree
+        try {
+          const errorData = await response.json();
+          const errorMessage = errorData.errors?.map((err: any) => err.message).join(', ') || "Please try again.";
+          toast({
+            title: "Submission Error",
+            description: `Could not submit your request. ${errorMessage}`,
+            variant: "destructive"
+          });
+          console.error("Formspree error:", errorData);
+        } catch {
+          // Fallback if response is not JSON
+          toast({
+            title: "Error",
+            description: "There was a problem submitting your request. Please try again.",
+            variant: "destructive"
+          });
+        }
       }
     } catch (error) {
+      console.error("Network or other error:", error);
       toast({
         title: "Error",
         description: "There was a problem submitting your request. Please try again.",
@@ -130,9 +154,9 @@ const Consultation = () => {
                 <Label htmlFor="name">Full Name</Label>
                 <Input
                   id="name"
-                  name="name"
+                  name="Full Name"
                   placeholder="John Doe"
-                  value={formData.name}
+                  value={formData["Full Name"]}
                   onChange={handleChange}
                   required
                   className="bg-muted border-border"
@@ -143,10 +167,10 @@ const Consultation = () => {
                 <Label htmlFor="email">Email Address</Label>
                 <Input
                   id="email"
-                  name="email"
+                  name="Email Address"
                   type="email"
                   placeholder="john@example.com"
-                  value={formData.email}
+                  value={formData["Email Address"]}
                   onChange={handleChange}
                   required
                   className="bg-muted border-border"
@@ -157,10 +181,10 @@ const Consultation = () => {
                 <Label htmlFor="phone">Phone Number (optional but recommended)</Label>
                 <Input
                   id="phone"
-                  name="phone"
+                  name="Phone Number"
                   type="tel"
                   placeholder="+1 (555) 000-0000"
-                  value={formData.phone}
+                  value={formData["Phone Number"]}
                   onChange={handleChange}
                   className="bg-muted border-border"
                 />
@@ -169,16 +193,16 @@ const Consultation = () => {
               <div className="space-y-2">
                 <Label>What are you seeking guidance for?</Label>
                 <Select 
-                  value={formData.guidanceType} 
-                  onValueChange={(value) => handleSelectChange('guidanceType', value)}
+                  value={formData["Seeking Guidance For"]} 
+                  onValueChange={(value) => handleSelectChange('Seeking Guidance For', value)}
                 >
                   <SelectTrigger className="bg-muted border-border">
                     <SelectValue placeholder="Select an option" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="grants">Grants & Funding</SelectItem>
-                    <SelectItem value="investment">Investment Advisory</SelectItem>
-                    <SelectItem value="both">Both</SelectItem>
+                    <SelectItem value="Grants & Funding">Grants & Funding</SelectItem>
+                    <SelectItem value="Investment Advisory">Investment Advisory</SelectItem>
+                    <SelectItem value="Both">Both</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -186,16 +210,16 @@ const Consultation = () => {
               <div className="space-y-2">
                 <Label>Which best describes you?</Label>
                 <Select 
-                  value={formData.clientType} 
-                  onValueChange={(value) => handleSelectChange('clientType', value)}
+                  value={formData["Describes You"]} 
+                  onValueChange={(value) => handleSelectChange('Describes You', value)}
                 >
                   <SelectTrigger className="bg-muted border-border">
                     <SelectValue placeholder="Select an option" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="individual">Individual / Professional</SelectItem>
-                    <SelectItem value="business">Business Owner</SelectItem>
-                    <SelectItem value="nonprofit">Organization / Nonprofit</SelectItem>
+                    <SelectItem value="Individual / Professional">Individual / Professional</SelectItem>
+                    <SelectItem value="Business Owner">Business Owner</SelectItem>
+                    <SelectItem value="Organization / Nonprofit">Organization / Nonprofit</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -204,10 +228,10 @@ const Consultation = () => {
                 <Label htmlFor="message">Briefly describe your situation or objective</Label>
                 <Textarea
                   id="message"
-                  name="message"
+                  name="Situation or Objective"
                   placeholder="Project, business, funding goal, or investment interest"
                   rows={4}
-                  value={formData.message}
+                  value={formData["Situation or Objective"]}
                   onChange={handleChange}
                   className="bg-muted border-border"
                 />
@@ -217,9 +241,9 @@ const Consultation = () => {
                 <Label htmlFor="referral">Referral (Where did you hear about us)</Label>
                 <Input
                   id="referral"
-                  name="referral"
+                  name="Referral"
                   placeholder="e.g. Social Media, Friend, Search Engine"
-                  value={formData.referral}
+                  value={formData["Referral"]}
                   onChange={handleChange}
                   className="bg-muted border-border"
                 />
