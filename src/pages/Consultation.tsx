@@ -60,6 +60,9 @@ const Consultation = () => {
     
     // Add the user's local time to the submission
     data.append('submission_local_time', new Date().toString());
+    
+    // Explicitly specify the target email to ensure Formspree sends to the correct recipient
+    data.append('_to', 'aidvestfin@aidvestfin.com');
 
     try {
       const response = await fetch('https://formspree.io/f/xzddbyjp', {
