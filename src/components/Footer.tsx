@@ -18,7 +18,7 @@ const Footer = () => {
                 />
               </a>
               <p className="text-secondary-foreground font-medium max-w-sm">
-                Your trusted partner for forex, crypto, stocks, and investment advisory services. Empowering traders worldwide.
+                Expert advisory for grants, funding opportunities, and investment solutions tailored for individuals and businesses.
               </p>
             </div>
 
